@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>Mushroom Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffefe;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #363;
+        }
+        
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 5px rgba(238, 138, 138, 0.1);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        
+        button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #45a049;
+            text-align: center;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #3b9eea;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .final-result-container {
+            background-color: #58ade2;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .result-text {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .input-values {
+            margin-top: 10px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .input-label {
+            font-weight: bold;
+        }
+        
+        .predicted-value {
+            font-weight: bold;
+            font-size: 20px;
+            color: #fbf7f7;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <h1>Mushroom Classification Prediction</h1>
+        <form action="{{url_for('predict_datapoint')}}" method="post">
+            
+            <div class="mc-1">
+                <label class="form-label">Cap Shape:</label>
+                <select class="form-control" name="cap_shape" placeholder="Select cap_shape" required>
+                    <option value='convex'>convex</option>
+                    <option value='bell'>bell</option>
+                    <option value="sunken">sunken</option>
+                    <option value="flat">flat</option>
+                    <option value="knobbed">knobbed</option>
+                    <option value="conical">conical</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Cap Surface:</label>
+                <select class="form-control" name="cap_surface" placeholder="Select cap_surface" required>
+                    <option value='smooth'>smooth</option>
+                    <option value='scaly'>scaly</option>
+                    <option value="fibrous">fibrous</option>
+                    <option value="grooves">grooves</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Cap Color:</label>
+                <select class="form-control" name="cap_color" placeholder="Select cap_color" required>
+                    <option value='brown'>brown</option>
+                    <option value='yellow'>yellow</option>
+                    <option value="white">white</option>
+                    <option value="gray">gray</option>
+                    <option value="red">red</option>
+                    <option value="pink">pink</option>
+                    <option value="buff">buff</option>
+                    <option value="purple">purple</option>
+                    <option value="cinnamon">cinnamon</option>
+                    <option value="green">green</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Bruises:</label>
+                <select class="form-control" name="bruises" placeholder="Select bruises" required>                    
+                    <option value="yes">yes</option>
+                    <option value="no">no</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Odor:</label>
+                <select class="form-control" name="odor" placeholder="Select odor" required>                    
+                    <option value="pungent">pungent</option>
+                    <option value="almond">almond</option>
+                    <option value="anise">anise</option>
+                    <option value="none">none</option>
+                    <option value="foul">foul</option>
+                    <option value="creosote">creosote</option>
+                    <option value="fishy">fishy</option>
+                    <option value="spicy">spicy</option>
+                    <option value="musty">musty</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Gill Attachment</label>
+                <select class="form-control" name="gill_attachment" placeholder="Select gill_attachment">                    
+                    <option value="free">free</option>
+                    <option value="attached">attached</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Gill Spacing</label>
+                <select class="form-control" name="gill_spacing" placeholder="Select gill_spacing">                    
+                    <option value="close">close</option>
+                    <option value="crowded">crowded</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Gill Size</label>
+                <select class="form-control" name="gill_size" placeholder="Select gill_size">                    
+                    <option value="narrow">narrow</option>
+                    <option value="broad">broad</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Gill Color</label>
+                <select class="form-control" name="gill_color" placeholder="Select gill_color">                    
+                    <option value="black">black</option>
+                    <option value="brown">brown</option>
+                    <option value="gray">gray</option>
+                    <option value="pink">pink</option>
+                    <option value="white">white</option>
+                    <option value="chocolate">chocolate</option>
+                    <option value="purple">purple</option>
+                    <option value="red">red</option>
+                    <option value="buff">buff</option>
+                    <option value="green">green</option>
+                    <option value="yellow">yellow</option>
+                    <option value="orange">orange</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Stalk Shape</label>
+                <select class="form-control" name="stalk_shape" placeholder="Select stalk_shape">                    
+                    <option value="enlarging">enlarging</option>
+                    <option value="tapering">tapering</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Stalk Root</label>
+                <select class="form-control" name="stalk_root" placeholder="Select stalk_root">                    
+                    <option value="equal">equal</option>
+                    <option value="club">club</option>
+                    <option value="bulbous">bulbous</option>
+                    <option value="rooted">rooted</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Stalk Surface Above Ring </label>
+                <select class="form-control" name="stalk_surface_above_ring" placeholder="Select stalk_surface_above_ring">                    
+                    <option value="smooth">smooth</option>
+                    <option value="fibrous">fibrous</option>
+                    <option value="silky">silky</option>
+                    <option value="scaly">scaly</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Stalk Surface Below Ring</label>
+                <select class="form-control" name="stalk_surface_below_ring" placeholder="Select stalk_surface_below_ring">
+                    <option value="smooth">smooth</option>
+                    <option value="fibrous">fibrous</option>
+                    <option value="scaly">scaly</option>
+                    <option value="silky">silky</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Stalk Color Above Ring</label>
+                <select class="form-control" name="stalk_color_above_ring" placeholder="Select stalk_color_above_ring">                    
+                    <option value="white">white</option>
+                    <option value="gray">gray</option>
+                    <option value="pink">pink</option>
+                    <option value="brown">brown</option>
+                    <option value="buff">buff</option>
+                    <option value="red">red</option>
+                    <option value="orange">orange</option>
+                    <option value="cinnamon">cinnamon</option>
+                    <option value="yellow">yellow</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Stalk Color Below Ring</label>
+                <select class="form-control" name="stalk_color_below_ring" placeholder="Select stalk_color_below_ring">                    
+                    <option value="white">white</option>
+                    <option value="gray">gray</option>
+                    <option value="pink">pink</option>
+                    <option value="brown">brown</option>
+                    <option value="buff">buff</option>
+                    <option value="red">red</option>
+                    <option value="orange">orange</option>
+                    <option value="cinnamon">cinnamon</option>
+                    <option value="yellow">yellow</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Veil Color</label>
+                <select class="form-control" name="veil_color" placeholder="Select veil_color">                    
+                    <option value="white">white</option>
+                    <option value="brown">brown</option>
+                    <option value="orange">orange</option>
+                    <option value="yellow">yellow</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Ring Number</label>
+                <select class="form-control" name="ring_number" placeholder="Select ring_number">                    
+                    <option value="one">one</option>
+                    <option value="two">two</option>
+                    <option value="none">none</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Ring Type</label>
+                <select class="form-control" name="ring_type" placeholder="Select ring_type">                    
+                    <option value="pendant">pendant</option>
+                    <option value="evanescent">evanescent</option>
+                    <option value="large">large</option>
+                    <option value="flaring">flaring</option>
+                    <option value="none">none</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Spore Print Color</label>
+                <select class="form-control" name="spore_print_color" placeholder="Select spore_print_color">                    
+                    <option value="black">black</option>
+                    <option value="brown">brown</option>
+                    <option value="white">white</option>
+                    <option value="chocolate">chocolate</option>
+                    <option value="purple">purple</option>
+                    <option value="buff">buff</option>
+                    <option value="green">green</option>
+                    <option value="yellow">yellow</option>
+                    <option value="orange">orange</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Population</label>
+                <select class="form-control" name="population" placeholder="Select population">       
+                    <option value="scattered">scattered</option>
+                    <option value="numerous">numerous</option>
+                    <option value="abundant">abundant</option>
+                    <option value="several">several</option>
+                    <option value="solitary">solitary</option>
+                    <option value="clustered">clustered</option>
+                </select>
+            </div>
+
+            <div class="mc-1">
+                <label class="form-label">Habitat</label>
+                <select class="form-control" name="habitat" placeholder="Select habitat">                    
+                    <option value="urban">urban</option>
+                    <option value="grasses">grasses</option>
+                    <option value="meadows">meadows</option>
+                    <option value="woods">woods</option>
+                    <option value="paths">paths</option>
+                    <option value="waste">waste</option>
+                    <option value="leaves">leaves</option>
+                </select>
+            </div>
+
+            <div class="button">
+                Predicted Mushroom Type :
+                <input class="btn btn-primary" type="submit" value="Submit" required>
+            </div>
+        </form>
+        <div class="final-result-container">
+            {% if final_result %}
+                <h3>The Mushroom is {{ final_result }}</h3>
+            {% endif %}
+        </div>
+    </div>    
+</body>
+</html>

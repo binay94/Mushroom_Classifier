@@ -1,0 +1,12 @@
+numpy
+pandas
+matplotlib
+seaborn
+flask
+scikit-learn==1.0.2
+pyproj
+-e .
+mlflow
+urllib3==1.26.6
+
+
