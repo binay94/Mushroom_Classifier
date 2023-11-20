@@ -1,4 +1,4 @@
-# CreditCard Default Prediction
+# Mushroom Classifier
 
 ## Problem Statement:
 Financial threats are becoming a significant concern for commercial banks due to the ever-improving financial industry. One of the 
@@ -6,7 +6,7 @@ most prominent threats faced by commercial banks is predicting the credit risk o
 develop a predictive model that can estimate the probability of credit default based on the characteristics of credit card owners and 
 their payment history.
 
-Dataset: <https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset>
+Dataset: <https://www.kaggle.com/datasets/uciml/mushroom-classification>
 
 ## Project Stages
 
@@ -43,7 +43,7 @@ Before you begin, make sure you have the following requirements:
 
     1. **Clone the repository**:
 
-        git clone <https://github.com/MKGourab/Credit_Card_Default_Prediction>
+        git clone <https://github.com/binay94/Mushroom_Classifier>
 
         cd your-repo-name
 

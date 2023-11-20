@@ -35,7 +35,7 @@ def predict_datapoint():
             else:
                 answer = "POISONOUS"
 
-            return render_template('form.html', final_result=answer)
+            return render_template('form.html', final_result=answer, input_values=form_data)
     except Exception as e:
         error_message = f'Exception occurred while running Flask API: {str(e)}'
         logging.error(error_message)
