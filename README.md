@@ -1,10 +1,7 @@
 # Mushroom Classifier
 
 ## Problem Statement:
-Financial threats are becoming a significant concern for commercial banks due to the ever-improving financial industry. One of the 
-most prominent threats faced by commercial banks is predicting the credit risk of their clients. The objective of this project is to
-develop a predictive model that can estimate the probability of credit default based on the characteristics of credit card owners and 
-their payment history.
+The Audubon Society Field Guide to North American Mushrooms contains descriptions of hypothetical samples corresponding to 23 species of gilled mushrooms in the Agaricus and Lepiota Family Mushroom (1981). Each species is labelled as either definitely edible, definitely poisonous, or maybe edible but not recommended. This last category was merged with the toxic category. The Guide asserts unequivocally that there is no simple rule for judging a mushroom's edibility, such as "leaflets three, leave it be" for Poisonous Oak and Ivy.The main goal is to predict which mushroom is poisonous & which is edible.
 
 Dataset: <https://www.kaggle.com/datasets/uciml/mushroom-classification>
 
@@ -72,12 +69,9 @@ Before you begin, make sure you have the following requirements:
         - After submitting the form, you'll be directed to a page displaying the classification results. The predicted obesity classification will be shown.
 
 ## Results:
-The goal of this project is to develop a solution that accurately predicts the probability of credit default based on credit card owner's
-characteristics and payment history. The success of the project will be determined by the model's performance on the test data, where it
-should demonstrate a strong ability to classify instances as credit default or non-default with high precision and recall.
+The objective of this project is to create a solution that effectively predicts the probability of a mushroom being poisonous or edible based on its characteristics. The success of the project will be evaluated by assessing the model's performance on test data, where it should exhibit a robust ability to classify instances as either poisonous or edible with high precision and recall.
 
-The final output of the project will be a trained machine learning model, along with the API, that can be used to predict credit default
-probabilities for new credit card applications or existing credit card holders.
+The ultimate deliverables of the project will include a trained machine learning model and an API. This model can then be utilized to predict the probability of mushrooms being poisonous or edible for new samples or existing datasets.
 
 ## Project Structure
 
@@ -132,15 +126,14 @@ project_root/
 
 
 ## Output is as shown below:
-### Deployed in AWS Beanstalk:
-![Screenshot 2023-11-03 123425](https://github.com/binay94/Defaulter_creditcard/assets/116953493/1266caef-d2fa-43a9-a055-3e6d4d53a80a)
-
 ### Homepage:
-![Screenshot 2023-11-03 130131](https://github.com/binay94/Defaulter_creditcard/assets/116953493/b03f8300-e24c-47db-94eb-4f3a110329ac)
+![Screenshot 2023-11-20 194903](https://github.com/binay94/Mushroom_Classifier/assets/116953493/8da61b92-a238-46bd-aca8-7517d6d06908)
 
 ### User Inputing:
-![Screenshot 2023-11-03 130635](https://github.com/binay94/Defaulter_creditcard/assets/116953493/3eee39a8-1781-4d23-8b13-1165bb106e14)
+![Screenshot 2023-11-20 194956](https://github.com/binay94/Mushroom_Classifier/assets/116953493/a3d9fe47-3be1-40b1-9016-93e41f4b3834)
 
 ### Results:
-![Screenshot 2023-11-03 130657](https://github.com/binay94/Defaulter_creditcard/assets/116953493/1fdcca19-77c1-4a5e-80b7-dc45c34fe758)
+![Screenshot 2023-11-21 131200](https://github.com/binay94/Mushroom_Classifier/assets/116953493/ddc96a13-63e2-48b2-b142-5a594f9b8b06)
+
+![Screenshot 2023-11-21 131328](https://github.com/binay94/Mushroom_Classifier/assets/116953493/2f8465a9-7d9b-43ca-a28d-5824e6639654)
 
